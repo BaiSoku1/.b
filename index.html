@@ -1,165 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Step 1</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Encrypt X - Obfuscator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      text-align: center;
-      font-family: sans-serif;
-      background: #0f172a;
-      color: white;
-      margin: 0;
-      padding: 10px;
-    }
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
 
-    button {
-      display: none;
-      width: 30%;
-      max-width: 400px;
-      padding: 12px;
-      font-size: 16px;
-      background-color: #22c55e;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
-      margin-top: 20px;
-      transition: 0.3s;
-    }
+    background:
+      radial-gradient(circle at center, rgba(0,0,0,0.75) 0%, rgba(2,6,23,0.95) 100%),
+      url("https://raw.githubusercontent.com/ScriptObfuscator2/Website/refs/heads/main/Dark%20Theme%20With%20Light%20Bulb.jpeg");
 
-    button:hover {
-      background-color: #16a34a;
-      transform: scale(1.05);
-    }
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-    h1 { font-size: 24px; }
-    p { font-size: 18px; }
+    font-family: "Courier New", monospace;
+    color: #e2e8f0;
 
-    .banner-container { margin: 20px auto; display: block; }
-  </style>
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: min(90%, 600px);
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 18px;
+    color: #ef4444;
+    margin-bottom: 30px;
+  }
+
+  textarea {
+    width: 90%;
+    height: 200px;
+    background: rgba(2,6,23,0.9);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px;
+    color: #e2e8f0;
+    font-size: 13px;
+    resize: none;
+    outline: none;
+  }
+
+  button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    background: #ef4444;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  button:hover {
+    background: #dc2626;
+  }
+
+  .footer {
+    margin-top: 22px;
+    font-size: 11px;
+    color: #94a3b8;
+  }
+</style>
 </head>
+
 <body>
 
-  <!-- POPUNDER AD -->
-  <script src="https://pl28975915.profitablecpmratenetwork.com/4a/f2/9d/4af29d7621e4eb9c2f18f8cd5a41d1ef.js"></script>
-  
-  <!-- TOP BANNER -->
-  <div class="banner-container">
-    <script>
-      atOptions = { 'key':'870154c105305777bf23bfe50a1e2d74','format':'iframe','height':60,'width':468,'params':{} };
-    </script>
-    <script src="https://www.highperformanceformat.com/870154c105305777bf23bfe50a1e2d74/invoke.js"></script>
+<div class="container">
+
+  <h1>Encrypt X Obfuscator</h1>
+
+  <textarea placeholder="Paste your script here..."></textarea>
+
+  <button onclick="alert('Obfuscation feature not connected yet')">
+    Obfuscate
+  </button>
+
+  <div class="footer">
+    Secure script with Encrypt X Engine
   </div>
 
-  <h1 id="step-title">🔑 Step 1 Verification</h1>
-  <p id="text">Preparing verification...</p>
-
-  <!-- Buttons -->
-  <button id="btn1" disabled onclick="startStep(1)">Continue</button>
-  <button id="btn2" onclick="startStep(2)">Continue</button>
-  <button id="btn3" onclick="startStep(3)">Continue</button>
-  <button id="btn4" onclick="startStep(4)">Get Link</button>
-
-  <!-- BOTTOM BANNER -->
-  <div class="banner-container">
-    <script>
-      atOptions = { 'key':'a9c6d2a0124e900f9bad9ac556aebf66','format':'iframe','height':250,'width':300,'params':{} };
-    </script>
-    <script src="https://www.highperformanceformat.com/a9c6d2a0124e900f9bad9ac556aebf66/invoke.js"></script>
-  </div>
-
-  <!-- SOCIAL BAR -->
-  <script src="https://pl28986645.profitablecpmratenetwork.com/a4/55/76/a45576689b48bc731c80bae6c125366c.js"></script>
-
-  <script>
-    // Delay button → more impressions
-    setTimeout(() => {
-      document.getElementById("text").innerText = "Verification ready. Click continue to proceed.";
-      document.getElementById("btn1").style.display = "inline-block";
-    }, 6000);
-
-    // Enabled button1
-    setTimeout(() => {
-      document.getElementById("btn1").disabled = false; // Enabled button1
-    }, 9000);
-    
-    async function getFinalLink() {
-      const link1 = "https://get-key.keysystem352.workers.dev/";
-      const link2 = "https://get-key.keysystem2352.workers.dev/";
-      const link3 = "https://get-key.keysystem3352.workers.dev/";
-      
-      const res = await fetch("https://api.codetabs.com/v1/proxy?quest=" + link1 + "status");
-      const txt = await res.text();
-      if (txt === "true") {
-         return link1;
-       }
-      const res2 = await fetch("https://api.codetabs.com/v1/proxy?quest=" + link2 + "status");
-      const txt2 = await res2.text();
-      if (txt2 === "true") {
-         return link2;
-       }
-       return link3;
-    }
-    
-    let stepActive = 0;
-    let leaveTime = 0;
-    let viewTime = 0;
-    
-    async function startStep(stepNumber) {
-      stepActive = stepNumber;
-      leaveTime = 0;
-
-      let link = '';
-
-      if(stepNumber === 1) link = "https://www.profitablecpmratenetwork.com/s26aamdb?key=99dea3ce588aa9aa836785dd2cb32795";
-      if(stepNumber === 2) link = "https://www.profitablecpmratenetwork.com/vcpfaz6mqh?key=1c1cb4fb07424cd21d64a1f69374af54";
-      if(stepNumber === 3) link = "https://www.profitablecpmratenetwork.com/amqvjhv3u?key=ac1c90bbc1681cb480e95a84f170cbb8";
-
-      if(stepNumber === 4) {
-        const final = await getFinalLink();
-        window.location.href = final + "make";
-        return;
-      }
-
-      window.open(link, "_blank");
-      document.getElementById(`btn${stepNumber}`).style.display = "none";
-
-      document.getElementById("text").innerText = "Click continue and stay at least 10 seconds before returning!";    }
-
-    window.addEventListener("blur", () => {
-      if(stepActive > 0) leaveTime = Date.now();
-    });
-
-    window.addEventListener("focus", () => {
-      if(stepActive === 0 || !leaveTime) return;
-
-      const timeAway = (Date.now() - leaveTime)/1000;
-
-      // 🔥 increased time (10 sec)
-      if(timeAway + viewTime >= 10) {
-        const nextStep = stepActive + 1;
-
-        document.getElementById("step-title").innerText = `🔑 Step ${nextStep} Verification`;
-
-        if(nextStep <= 4) {
-          document.getElementById(`btn${nextStep}`).style.display = "inline-block";
-        }
-
-        stepActive = 0;
-        leaveTime = 0;
-        viewTime = 0;
-        document.getElementById("text").innerText = "";
-      } else {
-        viewTime = (viewTime + timeAway);
-        document.getElementById("text").innerText = `Click continue and stay at least ${Math.floor(10 - viewTime)} seconds before returning!`;
-        document.getElementById(`btn${stepActive}`).style.display = "inline-block";
-        stepActive = 0;
-        leaveTime = 0;
-      }
-    });
-  </script>
+</div>
 
 </body>
 </html>
