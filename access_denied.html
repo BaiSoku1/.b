@@ -8,7 +8,7 @@
 <style>
   body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
 
     background: 
       radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(2,6,23,0.9) 100%),
@@ -20,36 +20,43 @@
 
     color: #e2e8f0;
     font-family: "Courier New", monospace;
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+
+    padding: 40px;
+    box-sizing: border-box;
   }
 
   .container {
     text-align: center;
     border: 1px solid #334155;
-    padding: 40px;
+
+    padding: clamp(25px, 4vw, 50px);
     border-radius: 12px;
-    background: rgba(15, 23, 42, 0.8);
+
+    background: rgba(15, 23, 42, 0.85);
     box-shadow: 0 0 40px rgba(0,0,0,0.8);
-    max-width: 420px;
+
+    width: min(90%, 520px);
   }
 
   h1 {
     color: #ef4444;
-    font-size: 24px;
-    margin-bottom: 15px;
+    font-size: clamp(20px, 2vw, 28px);
+    margin-bottom: 5px;
   }
 
   p {
-    font-size: 13px;
+    font-size: clamp(12px, 1.2vw, 14px);
     color: #94a3b8;
-    margin: 6px 0;
+    margin: 1px 1px;
   }
 
   .glitch {
-    font-size: 48px;
+    font-size: clamp(40px, 4vw, 60px);
     color: #ef4444;
     animation: glitch 1s infinite;
   }
@@ -62,6 +69,22 @@
     80% { text-shadow: 2px -2px red; }
     100% { text-shadow: none; }
   }
+
+  .footer-link {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #94a3b8;
+    text-align: center;
+  }
+
+  .footer-link a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+
+  .footer-link a:hover {
+    text-decoration: underline;
+  }
 </style>
 </head>
 
@@ -73,6 +96,13 @@
 
   <p>This script is protected by</p>
   <p>Encrypt X</p>
+</div>
+
+<div class="footer-link">
+  <p>Do you want to obfuscate your script?</p>
+  <a href="https://start-get-key.pages.dev/" target="_blank">
+    Click here
+  </a>
 </div>
 
 </body>
