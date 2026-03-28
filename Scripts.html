@@ -94,6 +94,7 @@
 (async () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("Id");
+  if (!id) return;
   try {
     const res = await fetch(`https://raw.githubusercontent.com/ScriptObfuscator2/Scripts/refs/heads/main/${id}`);
     if (res.ok) {
