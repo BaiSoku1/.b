@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Encrypt X Editor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at center, rgba(0,0,0,0.75) 0%, rgba(2,6,23,0.95) 100%),
+      url("https://raw.githubusercontent.com/ScriptObfuscator2/Website/refs/heads/main/Dark%20Theme%20With%20Light%20Bulb.jpeg");
+    background-size: cover;
+    background-position: center;
+    font-family: "Courier New", monospace;
+    display: flex;
+    justify-content: top;
+    align-items: top;
+    padding: 10px;
+  }
+
+  .container {
+    width: min(95%, 850px);
+    background: rgba(15, 23, 42, 0.85);
+    border: 2px solid #334155;
+    border-radius: 12px;
+    padding: 15px;
+  }
+
+  .topbar {
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 10px 18px;
+    background: #ef4444;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* EDITOR */
+  .editor {
+    display: flex;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 590px;
+    background: rgba(2,6,23,0.9);
+  }
+
+  /* LINE NUMBERS */
+  .lines {
+    padding: 0px;
+    text-align: right;
+    color: #64748b;
+    background: rgba(15, 23, 42, 0.6);
+    font-size: 13px;
+    line-height: 20px;
+    overflow: hidden;
+
+    /* 🔥 dynamic width */
+    min-width: 10px;
+    border-right: 1px solid #334155;
+  }
+
+  /* TEXTAREA */
+  textarea {
+    flex: 1;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #e2e8f0;
+    font-size: 13px;
+    line-height: 20px;
+    resize: none;
+    overflow: auto;
+    white-space: pre;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="topbar">
+    <button onclick="saveFile()">Save</button>
+  </div>
+
+  <div class="editor">
+    <div class="lines" id="lines"></div>
+    <textarea id="code" oninput="updateLines()" onscroll="syncScroll()"></textarea>
+  </div>
+
+</div>
+
+<script>
+function updateLines() {
+  const textarea = document.getElementById("code");
+  const lines = textarea.value.split("\n").length;
+
+  // 🔥 build numbers
+  let text = "";
+  for (let i = 1; i <= lines; i++) {
+    text += i + "\n";
+  }
+
+  document.getElementById("lines").innerText = text;
+
+  // 🔥 AUTO WIDTH based on digits
+  const digits = String(lines).length;
+  document.getElementById("lines").style.width = (digits * 6 + 10) + "px";
+}
+
+function syncScroll() {
+  const textarea = document.getElementById("code");
+  const lines = document.getElementById("lines");
+  lines.scrollTop = textarea.scrollTop;
+}
+
+function saveFile() {
+  alert("Saved!");
+}
+</script>
+
+</body>
+</html>
