@@ -226,19 +226,7 @@ function obfuscate() {
   keyInput.disabled = true;
   button.disabled = true;
   toggle.disabled = true;
-
-  const res = await fetch(`https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(`https://encrypt-x.scriptobfuscator2.workers.dev/obfuscate?auth=${key.value}`)}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      script: "hi"
-    })
-  });
-  const result = await res.text();
-  document.getElementById("scriptBox").value = result;
-  document.getElementById("keyInput").value = "";
+  alert("Processing...");
 }
 </script>
 
