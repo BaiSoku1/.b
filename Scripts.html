@@ -101,35 +101,28 @@
 
 <script>
 (async () => {
-  // Get Script Data Function
-  async function GetScriptData(id) {
-    let rocoins = await fetch(`https://github.com/ScriptObfuscator2/Scripts/blob/main/${id}`);
-    let text = await rocoins.text();
-    const startString = '"rawLines":["';
-    const endString = '"],"stylingDirectives"';
-    const startIndex = text.indexOf(startString);
-    const endIndex = text.indexOf(endString);
-    text = text.substring(startIndex + startString.length, endIndex);
-    text = text.split("\\").join("");
-    text = JSON.parse(text);
-    return text;
-  }
-  
   const params = new URLSearchParams(window.location.search);
   const id = params.get("Id");
   if (!id) return;
 
   try {
-    const json = await GetScriptData(id);
-    // 🔐 AUTH CHECK
-    if (json && json.auth) {
-      window.location.replace(`https://encrypt-x.pages.dev/Access?Id=${id}`);
+    const res = await fetch(`https://raw.githubusercontent.com/ScriptObfuscator2/Scripts/refs/heads/main/${id}`);
+
+    if (res.ok) {
+      const json = await res.json();
+
+      // 🔐 AUTH CHECK
+      if (json && json.auth) {
+        window.location.replace(`https://encrypt-x.pages.dev/Access?Id=${id}`);
+      }
+
+      // 📅 DATE DISPLAY
+      if (json && json.Date) {
+        const formatted = new Date(json.Date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+        document.querySelector(".date").innerText = `Published: ${formatted}`;
+      }
     }
-    // 📅 DATE DISPLAY
-    if (json && json.Date) {
-      const formatted = new Date(json.Date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-      document.querySelector(".date").innerText = `Published: ${formatted}`;
-    }
+
   } catch (err) {
     console.log("ERROR:", err);
   }
