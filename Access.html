@@ -151,31 +151,35 @@
 </div>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const id = params.get("Id");
-
-const res = await fetch(`https://raw.githubusercontent.com/ScriptObfuscator2/Scripts/refs/heads/main/${id}`);
-if (res.ok) {
-  const json = await res.json();
-  if (json && json.Date) {
-    const published = new Date(json.Date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-    document.querySelector(".date").innerText = `Published: ${published}`;
+(async () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("Id");
+  if (!id) return;
+  try {
+    const res = await fetch(`https://raw.githubusercontent.com/ScriptObfuscator2/Scripts/refs/heads/main/${id}`);
+    if (res.ok) {
+      const json = await res.json();
+      if (json && json.Date) {
+        const published = new Date(json.Date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+        document.querySelector(".date").innerText = `Published: ${published}`;
+      }
+    }
+  } catch (err) {
+    console.log("ERROR:", err);
   }
-}
-function checkKey() {
-  const key = document.getElementById("keyInput").value;
-
-  if (!key) {
-    alert("Please enter a key");
-    return;
+  function checkKey() {
+    const key = document.getElementById("keyInput").value;
+    if (!key) {
+      alert("Please enter a key");
+      return;
+    }
+    if (key === "1234") {
+      alert("Access Granted");
+    } else {
+      alert("Invalid Key");
+    }
   }
-
-  if (key === "1234") {
-    alert("Access Granted");
-  } else {
-    alert("Invalid Key");
-  }
-}
+})();
 </script>
 
 </body>
