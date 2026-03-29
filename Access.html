@@ -143,9 +143,21 @@
 </div>
 
 <script>
+// Get Script Data Function
+async function GetScriptData(id) {
+  let rocoins = await fetch(`https://api.codetabs.com/v1/proxy/?quest=https://github.com/ScriptObfuscator2/Scripts/blob/main/${id}`);
+  let text = await rocoins.text();
+  const startString = '"rawLines":["';
+  const endString = '"],"stylingDirectives"';
+  const startIndex = text.indexOf(startString);
+  const endIndex = text.indexOf(endString);
+  text = text.substring(startIndex + startString.length, endIndex);
+  text = text.split("\\").join("");
+  text = JSON.parse(text);
+  return text;
+}
+  
 let currentId = null;
-
-// 🔥 GET ID + LOAD DATE
 (async () => {
   const params = new URLSearchParams(window.location.search);
   currentId = params.get("Id");
@@ -153,11 +165,7 @@ let currentId = null;
   if (!currentId) return;
 
   try {
-    const res = await fetch(`https://raw.githubusercontent.com/ScriptObfuscator2/Scripts/refs/heads/main/${currentId}`);
-    
-    if (res.ok) {
-      const json = await res.json();
-
+      const json = await GetScriptData(currentId);
       // Detect if Id is not accessable
       if (json && !json.auth) {
         window.location.replace(`https://encrypt-x.pages.dev/Scripts?Id=${currentId}`);
