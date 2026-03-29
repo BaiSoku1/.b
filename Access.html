@@ -158,6 +158,11 @@ let currentId = null;
     if (res.ok) {
       const json = await res.json();
 
+      // Detect if Id is not accessable
+      if (json && !json.auth) {
+        window.location.replace(`https://encrypt-x.pages.dev/Scripts?Id=${currentId}`);
+      }
+      
       if (json && json.Date) {
         const published = new Date(json.Date).toLocaleDateString("en-US", {
           month: "long",
