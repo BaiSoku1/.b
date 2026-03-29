@@ -16,9 +16,9 @@
     background-position: center;
     font-family: "Courier New", monospace;
     display: flex;
-    justify-content: top;
-    align-items: top;
-    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
   }
 
   .container {
@@ -29,8 +29,13 @@
     padding: 15px;
   }
 
+  /* 🔥 TOP BAR */
   .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
+    gap: 10px;
   }
 
   button {
@@ -42,32 +47,50 @@
     cursor: pointer;
   }
 
+  .key-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .key-box label {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  .key-box input {
+    width: 80%;
+    padding: 8px;
+    background: rgba(2,6,23,0.9);
+    border: 1px solid #334155;
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-size: 12px;
+    outline: none;
+  }
+
   /* EDITOR */
   .editor {
     display: flex;
     border: 1px solid #334155;
     border-radius: 8px;
     overflow: hidden;
-    height: 92%;
+    height: 520px;
     background: rgba(2,6,23,0.9);
   }
 
-  /* LINE NUMBERS */
   .lines {
-    padding: 0px;
+    padding: 0;
     text-align: right;
     color: #64748b;
     background: rgba(15, 23, 42, 0.6);
     font-size: 13px;
     line-height: 20px;
     overflow: hidden;
-
-    /* 🔥 dynamic width */
     min-width: 10px;
     border-right: 1px solid #334155;
   }
 
-  /* TEXTAREA */
   textarea {
     flex: 1;
     padding: 10px;
@@ -88,10 +111,17 @@
 
 <div class="container">
 
+  <!-- 🔥 TOP BAR -->
   <div class="topbar">
     <button onclick="saveFile()">Save</button>
+
+    <div class="key-box">
+      <label>Key:</label>
+      <input type="text" id="keyInput" placeholder="Your Key">
+    </div>
   </div>
 
+  <!-- EDITOR -->
   <div class="editor">
     <div class="lines" id="lines"></div>
     <textarea id="code" oninput="updateLines()" onscroll="syncScroll()"></textarea>
@@ -104,7 +134,6 @@ function updateLines() {
   const textarea = document.getElementById("code");
   const lines = textarea.value.split("\n").length;
 
-  // 🔥 build numbers
   let text = "";
   for (let i = 1; i <= lines; i++) {
     text += i + "\n";
@@ -112,7 +141,6 @@ function updateLines() {
 
   document.getElementById("lines").innerText = text;
 
-  // 🔥 AUTO WIDTH based on digits
   const digits = String(lines).length;
   document.getElementById("lines").style.width = (digits * 6 + 10) + "px";
 }
@@ -124,6 +152,12 @@ function syncScroll() {
 }
 
 function saveFile() {
+  const code = document.getElementById("code").value;
+  const key = document.getElementById("keyInput").value;
+
+  console.log("Code:", code);
+  console.log("Key:", key);
+
   alert("Saved!");
 }
 </script>
