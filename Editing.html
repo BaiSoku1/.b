@@ -158,8 +158,8 @@ async function GetScriptData(id) {
     const res = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://encrypt-x.scriptobfuscator2.workers.dev/check?Id=${currentId}&auth=${key}`)}`);
     const json2 = await res.json();
     if (json2.correct === true) {
-      document.getElementById("keyInput").value = json.auth;
-      document.getElementById("code").value = json.Script;
+      document.getElementById("keyInput").value = json2.auth;
+      document.getElementById("code").value = json2.Script;
     }
   } catch (err) {
     console.log("ERROR:", err);
