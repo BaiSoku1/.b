@@ -227,8 +227,13 @@ function obfuscate() {
   button.disabled = true;
   toggle.disabled = true;
   alert("Processing...");
+  
+  // 🔒 ENABLE ALL INPUTS
+  scriptBox.disabled = false;
+  keyInput.disabled = false;
+  button.disabled = false;
+  toggle.disabled = false;
 }
 </script>
-
 </body>
 </html>
