@@ -202,7 +202,7 @@ function toggleKeyBox() {
   box.style.display = toggle.checked ? "block" : "none";
 }
 
-function obfuscate() {
+async function obfuscate() {
   const script = document.getElementById("scriptBox");
   const key = document.getElementById("keyInput");
   const button = document.querySelector("button");
@@ -226,8 +226,24 @@ function obfuscate() {
   keyInput.disabled = true;
   button.disabled = true;
   toggle.disabled = true;
-  alert("Processing...");
   
+  try {
+    const res = await fetch("https://api.allorigins.win/raw?url=https://encrypt-x.scriptobfuscator2.workers.dev/obfuscate", {
+      method: "POST",
+      headers: {
+       "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        script: script.value
+      })
+    });
+    const txt = await res.text();
+    alert(txt);
+  } catch (err) {
+    alert(err);
+  }
+  
+
   // 🔒 ENABLE ALL INPUTS
   scriptBox.disabled = false;
   keyInput.disabled = false;
@@ -235,5 +251,6 @@ function obfuscate() {
   toggle.disabled = false;
 }
 </script>
+
 </body>
 </html>
