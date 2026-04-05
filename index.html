@@ -221,6 +221,10 @@ async function obfuscate() {
     return;
   }
 
+  if (!document.getElementById("keyToggle").checked) {
+    key.value = "";
+  }
+
   // 🔒 DISABLE ALL INPUTS
   scriptBox.disabled = true;
   keyInput.disabled = true;
@@ -228,7 +232,7 @@ async function obfuscate() {
   toggle.disabled = true;
   
   try {
-    const res = await fetch("https://api.allorigins.win/raw?url=https://encrypt-x.scriptobfuscator2.workers.dev/obfuscate", {
+    const res = await fetch("https://encrypt-x.scriptobfuscator2.workers.dev/obfuscate" + "?auth=" + key.value, {
       method: "POST",
       headers: {
        "Content-Type": "application/json"
