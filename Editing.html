@@ -223,7 +223,7 @@ async function saveFile() {
   const res = await UpdateScript(key, code);
   if (res.includes("LastUpdate")) {
     alert("Saved");
-    // replace auth key without redirecting
+    // replace auth key in url without redirecting
     const url = new URL(window.location.href);
     url.searchParams.set("auth", key);
     history.replaceState(null, "", url);
