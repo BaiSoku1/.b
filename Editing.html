@@ -223,10 +223,10 @@ async function saveFile() {
   const res = await UpdateScript(key, code);
   if (res.includes("LastUpdate")) {
     alert("Saved");
-    setTimeout(() => {
-      console.log("Wait 2 seconds");
-    }, 10000);
-    window.location.replace(`https://encrypt-x.pages.dev/Editing?Id=${currentId}&auth=${key}`);
+    // replace auth key without redirecting
+    const url = new URL(window.location.href);
+    url.searchParams.set("auth", key);
+    history.replaceState(null, "", url);
   } else {
     alert(res);
   }
