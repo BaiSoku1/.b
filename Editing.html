@@ -223,7 +223,7 @@ async function saveFile() {
   const res = await UpdateScript(key, code);
   if (res.includes("LastUpdate")) {
     alert("Saved");
-    window.location.replace(`https://encrypt-x.pages.dev/Scripts?Id=${currentId}&auth=${key}`);
+    window.location.replace(`https://encrypt-x.pages.dev/Editing?Id=${currentId}&auth=${key}`);
   } else {
     alert(res);
   }
