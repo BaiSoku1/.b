@@ -197,7 +197,7 @@ async function checkKey() {
   }
 
   try {
-    const res = await fetch(`https://encrypt-x.scriptobfuscator2.workers.dev/check?Id=${currentId}&auth=${key}`);
+    const res = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://encrypt-x.scriptobfuscator2.workers.dev/check?Id=${currentId}&auth=${key}`)}`);
     const json = await res.json();
 
     if (json.correct === true) {
