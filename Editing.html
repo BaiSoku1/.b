@@ -229,6 +229,10 @@ async function saveFile() {
   console.log("Code:", code);
   console.log("Key:", key);
 
+  if (!key || key === "") {
+    alert("Key Can't be Empty");
+  }
+  
   const res = await UpdateScript(key, code);
   if (res.includes("LastUpdate")) {
     alert("Saved");
