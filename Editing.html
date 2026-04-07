@@ -247,6 +247,12 @@ async function saveFile() {
     alert(res);
   }
 }
+
+const keyInput = document.getElementById("keyInput");
+keyInput.addEventListener("input", () => {
+  keyInput.value = keyInput.value.replace(/\s/g, "");
+});
+  
 </script>
 
 </body>
