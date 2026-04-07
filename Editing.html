@@ -250,7 +250,7 @@ async function saveFile() {
 
 const keyInput = document.getElementById("keyInput");
 keyInput.addEventListener("input", () => {
-  keyInput.value = keyInput.value.replace(/\s/g, "");
+  keyInput.value = keyInput.value.replace(/[^a-zA-Z0-9]/g, "");
 });
   
 </script>
