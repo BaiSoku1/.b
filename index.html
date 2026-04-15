@@ -2,85 +2,105 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Encrypt X - Obfuscator</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>LOL · Obfuscator Core</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <style>
-  body {
+  * {
     margin: 0;
-    min-height: 100vh;
-
-    background:
-      radial-gradient(circle at center, rgba(0,0,0,0.75) 0%, rgba(2,6,23,0.95) 100%),
-      url("https://raw.githubusercontent.com/ScriptObfuscator2/Website/refs/heads/main/Dark%20Theme%20With%20Light%20Bulb.jpeg");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    font-family: "Courier New", monospace;
-    color: #e2e8f0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
   }
 
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 30% 40%, rgba(0, 0, 0, 0.7), rgba(2, 6, 23, 0.96)),
+                url("https://raw.githubusercontent.com/ScriptObfuscator2/Website/refs/heads/main/Dark%20Theme%20With%20Light%20Bulb.jpeg");
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Courier New', monospace;
+    color: #f0f4fe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    backdrop-filter: blur(1.2px);
+  }
+
   .container {
-    width: min(90%, 600px);
-    background: rgba(15, 23, 42, 0.85);
-    border: 2px solid #334155;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.8);
-    text-align: center;
+    width: min(92%, 680px);
+    background: rgba(12, 18, 34, 0.72);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(71, 85, 105, 0.55);
+    border-radius: 2rem;
+    padding: 2rem 1.8rem;
+    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.6), 0 0 0 0.5px rgba(255, 255, 255, 0.06) inset;
+    transition: all 0.2s ease;
   }
 
   h1 {
-    font-size: 18px;
-    color: #ef4444;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 650;
+    letter-spacing: -0.2px;
+    background: linear-gradient(130deg, #facc15, #ef4444);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+    text-align: center;
   }
 
   textarea {
-    width: 90%;
-    height: 200px;
-    background: rgba(2,6,23,0.9);
-    border: 1px solid #334155;
-    border-radius: 8px;
-    padding: 12px;
-    color: #e2e8f0;
-    font-size: 13px;
-
-    resize: none;
+    width: 100%;
+    height: 240px;
+    background: rgba(2, 6, 23, 0.9);
+    border: 1.5px solid #2d3a60;
+    border-radius: 1.2rem;
+    padding: 1rem;
+    color: #eef3ff;
+    font-family: 'SF Mono', 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    resize: vertical;
     outline: none;
-
-    /* 🔥 ADD THESE */
+    transition: 0.2s;
+    white-space: pre;
     overflow: auto;
-    white-space: pre;      /* prevents wrapping */
+  }
+
+  textarea:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+    background: #030712e6;
   }
 
   .switch-container {
-    margin-top: 15px;
+    margin-top: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
-    font-size: 13px;
-    color: #cbd5f5;
+    gap: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #cbd9ff;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    width: fit-content;
   }
 
   .switch {
     position: relative;
-    width: 40px;
-    height: 20px;
+    width: 44px;
+    height: 22px;
   }
 
   .switch input {
-    display: none;
+    opacity: 0;
+    width: 0;
+    height: 0;
   }
 
   .slider {
@@ -88,20 +108,20 @@
     cursor: pointer;
     inset: 0;
     background-color: #334155;
-    border-radius: 20px;
-    transition: 0.3s;
+    border-radius: 34px;
+    transition: 0.25s ease;
   }
 
   .slider:before {
     content: "";
     position: absolute;
-    height: 16px;
-    width: 16px;
+    height: 18px;
+    width: 18px;
     left: 2px;
-    top: 2px;
+    bottom: 2px;
     background-color: white;
     border-radius: 50%;
-    transition: 0.3s;
+    transition: 0.25s;
   }
 
   input:checked + .slider {
@@ -109,91 +129,125 @@
   }
 
   input:checked + .slider:before {
-    transform: translateX(20px);
+    transform: translateX(22px);
   }
 
   .key-input {
-    margin-top: 10px;
-    display: none;
-  }
-
-  .key-input input {
-    width: 90%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #334155;
-    background: rgba(2,6,23,0.9);
-    color: #e2e8f0;
-    outline: none;
-    font-size: 13px;
-  }
-
-  button {
-    margin-top: 15px;
+    margin-top: 0.8rem;
     width: 100%;
-    padding: 12px;
-    background: #ef4444;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
     transition: 0.2s;
   }
 
+  .key-input input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(2, 6, 23, 0.9);
+    border: 1.5px solid #2d3a60;
+    border-radius: 2rem;
+    color: #f0f4ff;
+    font-size: 0.85rem;
+    font-family: 'Inter', monospace;
+    outline: none;
+    letter-spacing: 0.3px;
+  }
+
+  .key-input input:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3);
+  }
+
+  button {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.85rem 0;
+    background: linear-gradient(100deg, #ef4444, #dc2626);
+    border: none;
+    border-radius: 3rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
+    letter-spacing: 0.4px;
+  }
+
   button:hover {
-    background: #dc2626;
+    background: linear-gradient(100deg, #dc2626, #b91c1c);
+    transform: scale(0.98);
+    box-shadow: 0 3px 10px rgba(220, 38, 38, 0.5);
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    transform: none;
+    cursor: not-allowed;
   }
 
   .footer {
-    margin-top: 11px;
-    font-size: 11px;
-    color: #94a3b8;
+    margin-top: 1.4rem;
+    font-size: 0.7rem;
+    color: #8d9ac2;
+    text-align: center;
+    border-top: 1px dashed #2d3a5a;
+    padding-top: 1rem;
   }
 
   .date {
     position: fixed;
-    bottom: 10px;
+    bottom: 12px;
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: 10px;
-    color: #64748b;
+    font-size: 0.7rem;
+    color: #6f7da3;
     pointer-events: none;
+    font-family: monospace;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(5px);
+    padding: 5px 0;
+    letter-spacing: 0.3px;
+  }
+
+  @media (max-width: 550px) {
+    .container {
+      padding: 1.5rem 1.2rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+    textarea {
+      height: 200px;
+    }
   }
 </style>
 </head>
-
 <body>
 
 <div class="container">
+  <h1>⚡ LOL · OBFUSCATOR</h1>
 
-  <h1>Encrypt X Obfuscator</h1>
-
-  <!-- ✅ FIXED: added id -->
-  <textarea id="scriptBox" placeholder="Paste your script here..."></textarea>
+  <textarea id="scriptBox" placeholder="▸ paste your raw script here ◂"></textarea>
 
   <div class="switch-container">
     <label class="switch">
       <input type="checkbox" id="keyToggle" onchange="toggleKeyBox()">
       <span class="slider"></span>
     </label>
-    <span>Key (Enable Access)</span>
+    <span>🔐 require access key (protection)</span>
   </div>
 
-  <div class="key-input" id="keyBox">
-    <!-- ✅ FIXED: added id -->
-    <input type="text" id="keyInput" maxlength="32" placeholder="Enter your access key...">
+  <div class="key-input" id="keyBox" style="display: none;">
+    <input type="text" id="keyInput" maxlength="32" placeholder="✧ alphanumeric key (max 32) ✧" autocomplete="off">
   </div>
 
   <button onclick="obfuscate()">
-    Obfuscate
+    ✦ OBFUSCATE ✦
   </button>
 
   <div class="footer">
-    Secure script with Encrypt X Engine
+    LOL protection
   </div>
-
 </div>
 
 <div class="date">
@@ -205,68 +259,75 @@ function toggleKeyBox() {
   const toggle = document.getElementById("keyToggle");
   const box = document.getElementById("keyBox");
   box.style.display = toggle.checked ? "block" : "none";
+  if (!toggle.checked) {
+    document.getElementById("keyInput").value = "";
+  }
 }
 
 async function obfuscate() {
-  const script = document.getElementById("scriptBox");
-  const key = document.getElementById("keyInput");
+  const scriptBox = document.getElementById("scriptBox");
+  const keyInput = document.getElementById("keyInput");
   const button = document.querySelector("button");
   const toggle = document.getElementById("keyToggle");
   
-  console.log("Script:", script.value);
-  console.log("Key:", key.value);
-
-  if (!script.value) {
-    alert("Script is empty");
+  const scriptValue = scriptBox.value;
+  const keyValue = keyInput.value;
+  
+  if (!scriptValue.trim()) {
+    alert("❌ script is empty — paste your code first");
     return;
   }
 
-  if (document.getElementById("keyToggle").checked && !key.value) {
-    alert("Key is required");
+  if (toggle.checked && !keyValue.trim()) {
+    alert("❌ access key required — fill the key field");
     return;
   }
 
-  if (!document.getElementById("keyToggle").checked) {
-    key.value = "";
+  if (!toggle.checked) {
+    keyInput.value = "";
   }
-
-  // 🔒 DISABLE ALL INPUTS
+  
   scriptBox.disabled = true;
   keyInput.disabled = true;
   button.disabled = true;
   toggle.disabled = true;
   
   try {
-    const res = await fetch("https://encrypt-x.scriptobfuscator2.workers.dev/obfuscate" + "?auth=" + key.value, {
+    const finalKey = toggle.checked ? keyValue : "";
+    const res = await fetch(`https://encrypt-x.scriptobfuscator2.workers.dev/obfuscate?auth=${encodeURIComponent(finalKey)}`, {
       method: "POST",
       headers: {
-       "Content-Type": "application/json"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        script: script.value
+        script: scriptValue
       })
     });
-    const txt = await res.text();
-    script.value = txt;
-    key.value = "";
+    
+    if (!res.ok) {
+      throw new Error(`Server error: ${res.status}`);
+    }
+    
+    const obfuscatedText = await res.text();
+    scriptBox.value = obfuscatedText;
+    keyInput.value = "";
+    
   } catch (err) {
-    alert(err);
+    alert("⚠️ obfuscation failed: " + err.message);
+    console.error(err);
+  } finally {
+    scriptBox.disabled = false;
+    keyInput.disabled = false;
+    button.disabled = false;
+    toggle.disabled = false;
   }
-  
-
-  // 🔒 ENABLE ALL INPUTS
-  scriptBox.disabled = false;
-  keyInput.disabled = false;
-  button.disabled = false;
-  toggle.disabled = false;
 }
 
-const keyInput = document.getElementById("keyInput");
-keyInput.addEventListener("input", () => {
-  keyInput.value = keyInput.value.replace(/[^a-zA-Z0-9]/g, "");
+const keyField = document.getElementById("keyInput");
+keyField.addEventListener("input", () => {
+  keyField.value = keyField.value.replace(/[^a-zA-Z0-9]/g, "");
 });
-  
 </script>
 
 </body>
-</html>
+  </html>
