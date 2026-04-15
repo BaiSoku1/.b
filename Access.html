@@ -2,148 +2,199 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Encrypt X - Access Key</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>LOLLL</title>
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   body {
-    margin: 100;
     min-height: 100vh;
-
-    background:
-      radial-gradient(circle at center, rgba(0,0,0,0.75) 0%, rgba(2,6,23,0.95) 100%),
-      url("https://raw.githubusercontent.com/ScriptObfuscator2/Website/refs/heads/main/Dark%20Theme%20With%20Light%20Bulb.jpeg");
-
+    background: radial-gradient(ellipse at 30% 35%, rgba(0, 0, 0, 0.7), rgba(3, 7, 26, 0.96)),
+                url("https://raw.githubusercontent.com/ScriptObfuscator2/Website/refs/heads/main/Dark%20Theme%20With%20Light%20Bulb.jpeg");
     background-size: cover;
-    background-position: center;
+    background-position: center 15%;
     background-repeat: no-repeat;
-
-    font-family: "Courier New", monospace;
-    color: #e2e8f0;
-
+    background-attachment: fixed;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Courier New', monospace;
+    color: #edf2ff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 1.8rem;
+    backdrop-filter: blur(1.5px);
   }
 
   .container {
-    width: min(90%, 250px);
-    background: rgba(15, 23, 42, 0.85);
-    border: 2px solid #334155;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    width: min(94%, 480px);
+    background: rgba(10, 16, 32, 0.7);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    border-radius: 2rem;
+    padding: 2rem 1.8rem;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(255, 255, 255, 0.08) inset;
     text-align: center;
+    transition: transform 0.2s ease;
   }
 
   h1 {
-    font-size: 18px;
-    color: #ef4444;
-    margin-bottom: 20px;
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    background: linear-gradient(135deg, #facc15, #ef4444);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
   }
 
   .subtitle {
-    font-size: 12px;
-    color: #94a3b8;
-    margin-bottom: 20px;
+    font-size: 0.85rem;
+    color: #a0afc7;
+    background: rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    border-radius: 30px;
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.2px;
+  }
+
+  .input-group {
+    margin: 1.2rem 0 0.8rem;
   }
 
   input {
-    width: 90%;
-    padding: 12px;
-    background: rgba(2,6,23,0.9);
-    border: 1px solid #334155;
-    border-radius: 8px;
-    color: #e2e8f0;
-    font-size: 13px;
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    background: rgba(2, 6, 23, 0.85);
+    border: 1.5px solid #2d3a5e;
+    border-radius: 2rem;
+    color: #f0f4ff;
+    font-size: 0.95rem;
+    font-family: 'Inter', monospace;
     outline: none;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  input:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+    background: #030712e6;
   }
 
   button {
-    margin-top: 15px;
+    margin-top: 1.2rem;
     width: 100%;
-    padding: 12px;
-    background: #ef4444;
+    padding: 0.85rem 0;
+    background: linear-gradient(95deg, #ef4444, #dc2626);
     border: none;
-    border-radius: 8px;
+    border-radius: 2.5rem;
     color: white;
-    font-size: 14px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 14px rgba(220, 38, 38, 0.3);
+    letter-spacing: 0.3px;
   }
 
   button:hover {
-    background: #dc2626;
+    background: linear-gradient(95deg, #dc2626, #b91c1c);
+    transform: scale(0.98);
+    box-shadow: 0 3px 8px rgba(220, 38, 38, 0.4);
   }
 
   .footer {
-    margin-top: 15px;
-    font-size: 11px;
-    color: #94a3b8;
+    margin-top: 1.6rem;
+    font-size: 0.7rem;
+    color: #7c8aa8;
+    border-top: 1px dashed #2d3a5e;
+    padding-top: 1rem;
+    letter-spacing: 0.3px;
   }
 
   .below-text {
-    margin-top: 15px;
-    font-size: 12px;
-    color: #94a3b8;
+    margin-top: 1.4rem;
+    font-size: 0.8rem;
+    color: #b9c3dd;
     text-align: center;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
   }
 
   .below-text a {
-    color: #38bdf8;
+    color: #facc15;
     text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dotted #facc15;
+    transition: 0.2s;
+  }
+
+  .below-text a:hover {
+    color: #ffdf7e;
+    border-bottom-color: #ffdf7e;
   }
 
   .date {
     position: fixed;
-    bottom: 10px;
+    bottom: 12px;
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: 10px;
-    color: #64748b;
+    font-size: 0.7rem;
+    color: #7e8aa8;
     pointer-events: none;
+    font-family: monospace;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    padding: 5px 0;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 500px) {
+    .container {
+      padding: 1.6rem 1.4rem;
+    }
+    h1 {
+      font-size: 1.6rem;
+    }
+    button {
+      padding: 0.75rem 0;
+    }
   }
 </style>
 </head>
-
 <body>
 
 <div class="container">
-
-  <h1>Access Key Required</h1>
-
-  <div class="subtitle">
-    Enter your key to access this script
+  <h1>⟡ ACCESS KEY ⟡</h1>
+  <div class="subtitle">verify identity · unlock script</div>
+  <div class="input-group">
+    <input type="text" id="keyInput" placeholder="✧ enter your access key ✧" autocomplete="off">
   </div>
-
-  <input type="text" id="keyInput" placeholder="Enter access key...">
-
-  <button onclick="checkKey()">
-    Access
-  </button>
-
+  <button onclick="checkKey()">↯ UNLOCK ↯</button>
   <div class="footer">
-    Encrypt X Secure Access System
+    encrypt x · secure access system
   </div>
-
 </div>
 
 <div class="below-text">
-  Do you want to obfuscate your script?
-  <a href="https://encrypt-x.pages.dev/" target="_blank">Click here</a>
+  ⚡ do you want to obfuscate your script?
+  <a href="https://encrypt-x.pages.dev/" target="_blank">encrypt now →</a>
 </div>
 
-<div class="date">
+<div class="date" id="dynamicDate">
   Published: NONE
 </div>
 
 <script>
-// Get Script Data Function
 async function GetScriptData(id) {
   let rocoins = await fetch(`https://api.codetabs.com/v1/proxy/?quest=https://github.com/ScriptObfuscator2/Scripts/blob/main/${id}`);
   let text = await rocoins.text();
@@ -165,7 +216,6 @@ let currentId = null;
 
   try {
     const json = await GetScriptData(currentId);
-    // Detect if Id is not accessable
     if (json && !json.auth) {
       window.location.replace(`https://encrypt-x.pages.dev/Scripts?Id=${currentId}`);
     } 
@@ -182,7 +232,6 @@ let currentId = null;
   }
 })();
 
-// 🔐 CHECK KEY (BUTTON CLICK ONLY)
 async function checkKey() {
   const key = document.getElementById("keyInput").value;
 
