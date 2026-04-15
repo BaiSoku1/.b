@@ -2,39 +2,303 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Encrypt X Editor</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>LOL Editor · secure script hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
     min-height: 100vh;
-    background:
-      radial-gradient(circle at center, rgba(0,0,0,0.75) 0%, rgba(2,6,23,0.95) 100%),
-      url("https://raw.githubusercontent.com/ScriptObfuscator2/Website/refs/heads/main/Dark%20Theme%20With%20Light%20Bulb.jpeg");
+    background: radial-gradient(ellipse at 30% 35%, rgba(0, 0, 0, 0.72), rgba(2, 6, 23, 0.96)),
+                url("https://raw.githubusercontent.com/ScriptObfuscator2/Website/refs/heads/main/Dark%20Theme%20With%20Light%20Bulb.jpeg");
     background-size: cover;
-    background-position: center;
-    font-family: "Courier New", monospace;
+    background-position: center 20%;
+    background-attachment: fixed;
+    font-family: 'Inter', system-ui, 'Segoe UI', 'Courier New', monospace;
     display: flex;
     justify-content: center;
-    align-items: top;
-    padding: 0px;
+    align-items: flex-start;
+    padding: 1.2rem;
   }
 
   .container {
-    width: min(95%, 1000px);
-    background: rgba(15, 23, 42, 0.85);
-    border: 2px solid #334155;
-    border-radius: 12px;
-    padding: 15px;
+    width: min(94%, 1100px);
+    background: rgba(12, 18, 34, 0.78);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(71, 85, 105, 0.55);
+    border-radius: 1.8rem;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.6);
   }
 
-  /* 🔥 TOP BAR */
   .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  button {
+    padding: 0.6rem 1.4rem;
+    background: linear-gradient(100deg, #ef4444, #dc2626);
+    border: none;
+    border-radius: 2rem;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+  }
+
+  button:hover {
+    transform: scale(0.97);
+    background: linear-gradient(100deg, #dc2626, #b91c1c);
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    transform: none;
+    cursor: not-allowed;
+  }
+
+  .key-box {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 0.4rem 1rem;
+    border-radius: 3rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .key-box label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #facc15;
+    letter-spacing: 0.5px;
+  }
+
+  .key-box input {
+    width: 220px;
+    padding: 0.5rem 0.9rem;
+    background: rgba(2, 6, 23, 0.9);
+    border: 1px solid #3b4a6b;
+    border-radius: 2rem;
+    color: #f0f4ff;
+    font-size: 0.8rem;
+    font-family: monospace;
+    outline: none;
+    transition: 0.2s;
+  }
+
+  .key-box input:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3);
+  }
+
+  .editor {
+    display: flex;
+    border: 1px solid #2d3a60;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    background: rgba(2, 6, 23, 0.85);
+    min-height: 65vh;
+    max-height: 70vh;
+  }
+
+  .lines {
+    padding: 0.8rem 0.5rem;
+    text-align: right;
+    color: #7c8db0;
+    background: rgba(10, 14, 27, 0.7);
+    font-family: 'SF Mono', 'Courier New', monospace;
+    font-size: 0.75rem;
+    line-height: 1.5rem;
+    overflow: hidden;
+    border-right: 1px solid #2d3a60;
+    user-select: none;
+    white-space: pre;
+  }
+
+  textarea {
+    flex: 1;
+    padding: 0.8rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #eef3ff;
+    font-family: 'SF Mono', 'Courier New', monospace;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    resize: none;
+    overflow: auto;
+    white-space: pre;
+  }
+
+  textarea:disabled {
+    opacity: 0.65;
+  }
+
+  @media (max-width: 650px) {
+    .topbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .key-box {
+      justify-content: space-between;
+    }
+    .key-box input {
+      width: 100%;
+    }
+    .container {
+      padding: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="topbar">
+    <button onclick="saveFile()">💾 SAVE SCRIPT</button>
+    <div class="key-box">
+      <label>🔑 AUTH KEY:</label>
+      <input type="text" id="keyInput" placeholder="alphanumeric key" maxlength="32" autocomplete="off">
+    </div>
+  </div>
+
+  <div class="editor">
+    <div class="lines" id="lines"></div>
+    <textarea id="code" oninput="updateLines()" onscroll="syncScroll()" placeholder="// script content will appear here after validation ..."></textarea>
+  </div>
+</div>
+
+<script>
+async function GetScriptData(id) {
+  let rocoins = await fetch(`https://api.codetabs.com/v1/proxy/?quest=https://github.com/ScriptObfuscator2/Scripts/blob/main/${id}`);
+  let text = await rocoins.text();
+  const startString = '"rawLines":["';
+  const endString = '"],"stylingDirectives"';
+  const startIndex = text.indexOf(startString);
+  const endIndex = text.indexOf(endString);
+  text = text.substring(startIndex + startString.length, endIndex);
+  text = text.split("\\").join("");
+  text = JSON.parse(text);
+  return text;
+}
+
+async function UpdateScript(auth, script) {
+  const params = new URLSearchParams(window.location.search);
+  const scriptId = params.get("Id");
+  const key = params.get("auth");
+  if (!key || !scriptId) return;
+  try {
+    const res = await fetch(`https://encrypt-x.scriptobfuscator2.workers.dev/edit?Id=${scriptId}&auth=${key}`, {
+      method: "PUT",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({
+        auth: auth,
+        script: script
+      })
+    });
+    const result = await res.text();
+    return result;
+  } catch (err) {
+    console.log("ERROR:", err);
+    alert(err);
+    return;
+  }
+}
+  
+(async () => {
+  setUIEnabled(false);
+  const params = new URLSearchParams(window.location.search);
+  const currentId = params.get("Id");
+  const key = params.get("auth");
+  if (!currentId || !key) return;
+  try {
+    const json = await GetScriptData(currentId);
+    if (json && !json.auth) {
+      window.location.replace(`https://encrypt-x.pages.dev/Scripts?Id=${currentId}`);
+    }
+    const res = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(`https://encrypt-x.scriptobfuscator2.workers.dev/check?Id=${currentId}&auth=${key}`)}`);
+    const json2 = await res.json();
+    if (json2.correct === true) {
+      document.getElementById("keyInput").value = json2.auth;
+      document.getElementById("code").value = json2.Script;
+      setUIEnabled(true);
+      updateLines();
+    }
+  } catch (err) {
+    console.log("ERROR:", err);
+  }
+})();
+
+function setUIEnabled(state) {
+  document.getElementById("code").disabled = !state;
+  document.getElementById("keyInput").disabled = !state;
+  document.querySelector("button").disabled = !state;
+}
+  
+function updateLines() {
+  const textarea = document.getElementById("code");
+  const lines = textarea.value.split("\n").length;
+  let text = "";
+  for (let i = 1; i <= lines; i++) {
+    text += i + "\n";
+  }
+  document.getElementById("lines").innerText = text;
+  const digits = String(lines).length;
+  document.getElementById("lines").style.width = (digits * 7 + 14) + "px";
+}
+
+function syncScroll() {
+  const textarea = document.getElementById("code");
+  const lines = document.getElementById("lines");
+  lines.scrollTop = textarea.scrollTop;
+}
+
+async function saveFile() {
+  setUIEnabled(false);
+  const params = new URLSearchParams(window.location.search);
+  const currentId = params.get("Id");
+  const code = document.getElementById("code").value;
+  const key = document.getElementById("keyInput").value;
+
+  if (!key || key === "") {
+    alert("⛔ Key cannot be empty");
+    setUIEnabled(true);
+    return;
+  }
+  
+  const res = await UpdateScript(key, code);
+  if (res && res.includes("LastUpdate")) {
+    alert("✓ Script saved successfully");
+    setUIEnabled(true);
+    const url = new URL(window.location.href);
+    url.searchParams.set("auth", key);
+    history.replaceState(null, "", url);
+  } else {
+    alert(res || "Save failed — server error");
+    setUIEnabled(true);
+  }
+}
+
+const keyInput = document.getElementById("keyInput");
+keyInput.addEventListener("input", () => {
+  keyInput.value = keyInput.value.replace(/[^a-zA-Z0-9]/g, "");
+});
+</script>
+</body>
+</html>    margin-bottom: 10px;
     gap: 10px;
   }
 
